@@ -1,19 +1,21 @@
+<?php
+	$path = '/themes/thought-spot';
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><?php echo $page_title.$site_name; ?></title>
 		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title><?php echo $page_title.$site_name; ?></title>
+        <meta name="description" content="Thought Spot is a live health and wellness map designed by students, for students in the Greater Toronto Area." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<!-- hardcode the css link -->
-		<link rel="stylesheet" type="text/css" href="/themes/thought-spot/css/style.css" />
+        <link rel="apple-touch-icon" href="<?php print $path; ?>/images/apple-touch-icon.png" />
 
-		<!-- hardcode the js link -->
-		<script type="text/javascript" src="/themes/thought-spot/js/script.js"></script>
+		<!-- hardcode the css link -->
+		<link rel="stylesheet" type="text/css" href="<?php print $path; ?>/css/style.css" />
 
 		<?php
-			// echo $header_block;
-
 			// Action::header_scripts - Additional Inline Scripts from Plugins
 			Event::run('ushahidi_action.header_scripts');
 		?>
@@ -38,33 +40,82 @@
 	?>
 
 	<body id="page" class="<?php echo $body_class; ?>">
-		<div class="rapidxwpr floatholder">
-			<?php
-				/*
-				// Action::header_item - Additional items to be added by plugins
-				Event::run('ushahidi_action.header_item');
-				*/
-			?>
+		<header role="banner" id="header">
 
-			<div id="middle">
-				<div class="background layoutleft">
+			<a href="<?php echo url::site();?>">
+				<h1>
+					<img src="<?php print $path; ?>/images/logo.svg" alt="Logo" />
+					<?php echo $site_name; ?>
+				</h1>
+			</a>
 
-					<div id="mainmenu" class="clearingfix">
-						<?php if ($banner == NULL): ?>
-						<div id="logo">
-							<h1><a href="<?php echo url::site();?>"><?php echo $site_name; ?></a></h1>
-						</div>
-						<?php else: ?>
-						<a href="<?php echo url::site();?>"><img src="<?php echo $banner; ?>" alt="<?php echo $site_name; ?>" /></a>
-						<?php endif; ?>
+			<nav role="search" id="nav">
+				<h2>What are you looking for?</h2>
 
-						<div class="menu">
+				<fieldset>
+					<legend>Categories</legend>
+					<ul>
+						<li>
+							<label for="search-category-services">
+								<input type="radio" name="search-category" id="search-category-services" />
+								Services
+							</label>
+						</li>
+						<li>
+							<label for="search-category-problemsolving">
+								<input type="radio" name="search-category" id="search-category-problemsolving" />
+								Problem Solving
+							</label>
+						</li>
+						<li>
+							<label for="search-category-outings">
+								<input type="radio" name="search-category" id="search-category-outings" />
+								Outings
+							</label>
+						</li>
+						<li>
+							<label for="search-category-teachings">
+								<input type="radio" name="search-category" id="search-category-teachings" />
+								Teachings
+							</label>
+						</li>
+					</ul>
+				</fieldset>
+
+				<fieldset>
+					<h2>Problem Solving</h2>
+					<!--
+					1. Are you in crisis or in need of immediate assistance yes/no w/ def
+						yes = call 911
+						no = continue
+					2. no…but i'd like to talk to someone immediately
+						under 20 kids help phone
+						good to talk for 17-25 yo
+						distress centre toronto for over 25
+
+					   no…but i'm concerned with
+					3. age
+						gender
+						location
+						gender
+						accessibility issues
+						open now vs something else
+					4. long list of concerns
+					-->
+				</fieldset>
+
+				<div id="searchbox">
+					<div class="search-form">
+						<form action="http://localhost:8090/search" method="get" id="search">
 							<ul>
-								<?php nav::main_tabs($this_page); ?>
+								<li>
+									<input id="search-term" type="text" name="k" value="" class="text">
+								</li>
+								<li>
+									<input type="submit" name="b" class="searchbtn" value="Search">
+								</li>
 							</ul>
-						</div>
+						</form>
 					</div>
-
-					<div id="searchbox">
-						<?php echo $search; ?>
-					</div>
+				</div>
+			</nav>
