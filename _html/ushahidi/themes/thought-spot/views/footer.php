@@ -78,5 +78,8 @@
 		<?php
 			Event::run('ushahidi_action.main_footer');
 		?>
-		</body>
+
+		<!-- hardcode the js link -->
+		<script type="text/javascript" src="/themes/thought-spot/js/script.js" />
+	</body>
 </html>

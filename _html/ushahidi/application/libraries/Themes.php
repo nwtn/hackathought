@@ -307,7 +307,7 @@ INLINEJS;
 		$search .= "<div class=\"search-form\">";
 		$search .= form::open("search", array('method' => 'get', 'id' => 'search'));
 		$search .= "<ul>";
-		$search .= "<li><input type=\"text\" name=\"k\" value=\"\" class=\"text\" /></li>";
+		$search .= "<li><input id=\"search-term\" type=\"text\" name=\"k\" value=\"\" class=\"text\" /></li>";
 		$search .= "<li><input type=\"submit\" name=\"b\" class=\"searchbtn\" value=\"".Kohana::lang('ui_main.search')."\" /></li>";
 		$search .= "</ul>";
 		$search .= form::close();
