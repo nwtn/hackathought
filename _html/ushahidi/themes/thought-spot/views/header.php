@@ -1,21 +1,21 @@
-<?php
-	$path = '/themes/thought-spot';
-?>
+<?php $path = '/themes/thought-spot'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title><?php echo $page_title.$site_name; ?></title>
-        <meta name="description" content="Thought Spot is a live health and wellness map designed by students, for students in the Greater Toronto Area." />
+		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <link rel="apple-touch-icon" href="<?php print $path; ?>/images/apple-touch-icon.png" />
 
 		<!-- hardcode the css link -->
 		<link rel="stylesheet" type="text/css" href="<?php print $path; ?>/css/style.css" />
 
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgr8nzb8ORG5HEc7Bnrki_ac9Yy-8lDsA&amp;libraries=places">
+    </script>
+
 		<?php
+			// echo $header_block;
+
 			// Action::header_scripts - Additional Inline Scripts from Plugins
 			Event::run('ushahidi_action.header_scripts');
 		?>
