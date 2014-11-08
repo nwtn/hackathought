@@ -6,6 +6,7 @@
 
 		/* initialize */
 		'init': function() {
+      console.log('loading');
       google.maps.event.addDomListener(window, 'load', initialize);
 		},
 
@@ -17,7 +18,7 @@
 
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-      var input = (document.getElementById('placesSearch'));
+      var input = (document.getElementById('search-term'));
 
       var types = document.getElementById('type-selector');
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -100,22 +101,23 @@
           infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br>' + phone + '<br>' + website + '<br><br>' + hours);
           infowindow.open(map, marker);
         });
-      },
-
-      'setupClickListener': function(id, types) {
-        var radioButton = document.getElementById(id);
-        google.maps.event.addDomListener(radioButton, 'click', function() {
-          autocomplete.setTypes(types);
-        });
       }
+    },
 
-      //setupClickListener('changetype-all', []);
-      //setupClickListener('changetype-address', ['address']);
-      //setupClickListener('changetype-establishment', ['establishment']);
-      //setupClickListener('changetype-geocode', ['geocode']);
+    'setupClickListener': function(id, types) {
+      var radioButton = document.getElementById(id);
+      google.maps.event.addDomListener(radioButton, 'click', function() {
+        autocomplete.setTypes(types);
+      });
     }
+
+    //setupClickListener('changetype-all', []);
+    //setupClickListener('changetype-address', ['address']);
+    //setupClickListener('changetype-establishment', ['establishment']);
+    //setupClickListener('changetype-geocode', ['geocode']);
 	};
 
+  console.log('a');
 	w.thoughtspot.init();
 
 })(this, this.document);
