@@ -5,8 +5,14 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+		<!-- hardcode the css link -->
+		<link rel="stylesheet" type="text/css" href="/themes/thought-spot/css/style.css" />
+
+		<!-- hardcode the js link -->
+		<script type="text/javascript" src="/themes/thought-spot/js/script.js"></script>
+
 		<?php
-			// $header_block;
+			// echo $header_block;
 
 			// Action::header_scripts - Additional Inline Scripts from Plugins
 			Event::run('ushahidi_action.header_scripts');
