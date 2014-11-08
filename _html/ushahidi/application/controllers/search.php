@@ -135,8 +135,6 @@ class Search_Controller extends Main_Controller {
 			$google_places->query   = 'High%20Park';
 			$results                 = $google_places->textsearch();
 
-			echo var_dump($results);
-
 			$query = $db->query($search_query, $pagination->sql_offset, (int)Kohana::config('settings.items_per_page'));
 
 			// Results Bar
