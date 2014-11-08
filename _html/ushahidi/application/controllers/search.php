@@ -12,13 +12,16 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
+
+require(__DIR__ .'/../../vendor/autoload.php');; // or wherever autoload.php is located
+
 class Search_Controller extends Main_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 	}
-	
+
 	/**
 	 * Build a search query with relevancy
 	 * Stop word control included
@@ -75,7 +78,7 @@ class Search_Controller extends Main_Controller {
 		$db = new Database();
 
 		$keywords = explode(' ', $keyword_raw);
-		if (is_array($keywords) AND ! empty($keywords)) 
+		if (is_array($keywords) AND ! empty($keywords))
 		{
 			array_change_key_case($keywords, CASE_LOWER);
 			$i = 0;
@@ -114,7 +117,7 @@ class Search_Controller extends Main_Controller {
 								. "ORDER BY relevance DESC LIMIT ?, ?";
 			}
 		}
-		
+
 		if ( ! empty($search_query))
 		{
 			// Pagination
@@ -123,6 +126,16 @@ class Search_Controller extends Main_Controller {
 				'items_per_page' => (int) Kohana::config('settings.items_per_page'),
 				'total_items' => ORM::factory('incident')->where($where_string)->count_all()
 			));
+
+			$apiKey       = 'AIzaSyDVRjEjiHlXyoNp8Il2vXB64aRL2mlzzjk';
+			$google_places = new joshtronic\GooglePlaces($apiKey);
+
+			$google_places->location = array(43.6483814,-79.369996);
+			$google_places->radius   = 800;
+			$google_places->query   = 'High%20Park';
+			$results                 = $google_places->textsearch();
+
+			echo var_dump($results);
 
 			$query = $db->query($search_query, $pagination->sql_offset, (int)Kohana::config('settings.items_per_page'));
 
