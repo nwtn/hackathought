@@ -80,6 +80,6 @@
 		?>
 
 		<!-- hardcode the js link -->
-		<script type="text/javascript" src="/themes/thought-spot/js/script.js" />
+		<script type="text/javascript" src="/themes/thought-spot/js/script.js"></script>
 	</body>
 </html>
