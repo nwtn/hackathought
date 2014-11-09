@@ -435,4 +435,6 @@
 					</form>
 				</section>
 			</nav>
+
+			<a class="suggest-a-spot" href="/suggest">Suggest a spot</a>
 		</header>
