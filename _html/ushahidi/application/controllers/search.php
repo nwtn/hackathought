@@ -12,14 +12,12 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-
-require(__DIR__ .'/../../vendor/autoload.php');; // or wherever autoload.php is located
-
 class Search_Controller extends Main_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
+		$this->auto_render = false;
 	}
 
 	/**
@@ -38,6 +36,10 @@ class Search_Controller extends Main_Controller {
 		$search_info = "";
 		$html = "";
 		$pagination = "";
+		$arr = array();
+		$keywords = array();
+
+		$keyword_raw = '';
 
 		// Stop words that we won't search for
 		// Add words as needed!!
@@ -77,76 +79,53 @@ class Search_Controller extends Main_Controller {
 		// Database instance
 		$db = new Database();
 
-		$keywords = explode(' ', $keyword_raw);
-		if (is_array($keywords) AND ! empty($keywords))
-		{
-			array_change_key_case($keywords, CASE_LOWER);
-			$i = 0;
 
-			foreach($keywords as $value)
+
+				$arr = array();
+				$fromGoogle = array();
+				$main = array();
+
+			if ( ! empty($keyword_raw))
 			{
-				if ( ! in_array($value,$stop_words) AND ! empty($value))
-				{
-					// Escape the string for query safety
-					$chunk = $db->escape_str($value);
 
-					if ($i > 0)
-					{
-						$plus = ' + ';
-						$or = ' OR ';
-					}
+				$curlString = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" . urlencode($keyword_raw) . "&key=AIzaSyDVRjEjiHlXyoNp8Il2vXB64aRL2mlzzjk&location=43.7182713,-79.3777061&radius=10000";
 
-					// Give relevancy weighting
-					// Title weight = 2
-					// Description weight = 1
-					$keyword_string = $keyword_string.$plus."(CASE WHEN incident_title LIKE '%$chunk%' THEN 2 ELSE 0 END) + "
-										. "(CASE WHEN incident_description LIKE '%$chunk%' THEN 1 ELSE 0 END) ";
+				//https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CoQBcwAAAH3x4xqo5NtRJTwiEhxQeKk_FbEx-bfEIynadsigUUYpqrI933eH2yag8NNzVoN3Cs7zpIem97XnlPjmYohznIXOy4JV3hQI8TZzJpHbXJZar6IrX-vfHoznznjnhOlyO72Ziu3_I3CNnEa3a5el4f2foXJIGKh3kfbkM4nEUisTEhDppKWPBL7D2KjFwS0elXLIGhTZkBJIyUUVJQl5qjJ3qDOh1Icpdg&key=AIzaSyDVRjEjiHlXyoNp8Il2vXB64aRL2mlzzjk
 
-					$where_string = $where_string.$or."(incident_title LIKE '%$chunk%' OR incident_description LIKE '%$chunk%')";
-					$i++;
+				//echo $curlString;
+
+				// Get cURL resource
+				$curl = curl_init();
+				// Set some options - we are passing in a useragent too here
+				curl_setopt_array($curl, array(
+				    CURLOPT_RETURNTRANSFER => 1,
+				    CURLOPT_URL => $curlString
+				));
+				// Send the request & save response to $resp
+				$resp = json_decode(curl_exec($curl), true);
+				// Close request to clear up some resources
+				curl_close($curl);
+
+				for($i=0; $i<count($resp['results']); $i++){
+					$fromGoogle[$resp['results'][$i]['place_id']] = array();
+					array_push($fromGoogle[$resp['results'][$i]['place_id']], $resp['results'][$i]);
+				  array_push($arr, $resp['results'][$i]['place_id']);
 				}
 			}
+		//}
 
-			if ( ! empty($keyword_string) AND !empty($where_string))
-			{
-				// Limit the result set to only those reports that have been approved
-				$where_string = '(' . $where_string . ') AND incident_active = 1';
-				$search_query = "SELECT *, (".$keyword_string.") AS relevance FROM "
-								. $this->table_prefix."incident "
-								. "WHERE ".$where_string." "
-								. "ORDER BY relevance DESC LIMIT ?, ?";
-			}
-		}
-
-		if ( ! empty($search_query))
+		if ( ! empty($arr))
 		{
-			// Pagination
-			$pagination = new Pagination(array(
-				'query_string' => 'page',
-				'items_per_page' => (int) Kohana::config('settings.items_per_page'),
-				'total_items' => ORM::factory('incident')->where($where_string)->count_all()
-			));
-
-			$apiKey       = 'AIzaSyDVRjEjiHlXyoNp8Il2vXB64aRL2mlzzjk';
-			$google_places = new joshtronic\GooglePlaces($apiKey);
-
-			$google_places->location = array(43.6483814,-79.369996);
-			$google_places->radius   = 800;
-			$google_places->query   = 'High%20Park';
-			$results                 = $google_places->textsearch();
-
-			$query = $db->query($search_query, $pagination->sql_offset, (int)Kohana::config('settings.items_per_page'));
+			//$query = $db->query("select * from incident where place_id find_in_set (place_id, :arr)", $pagination->sql_offset, (int)Kohana::config('settings.items_per_page'));
+			$sqlString = "select * from incident where place_id in ('" . implode("','", $arr) . "')";
+			$query = $db->query($sqlString);
 
 			// Results Bar
-			if ($pagination->total_items != 0)
+			if (count($query) != 0)
 			{
 				$search_info .= "<div class=\"search_info\">"
-							. Kohana::lang('ui_admin.showing_results')
-							. ' '. ( $pagination->sql_offset + 1 )
-							. ' '.Kohana::lang('ui_admin.to')
-							. ' '.( (int) Kohana::config('settings.items_per_page') + $pagination->sql_offset )
-							. ' '.Kohana::lang('ui_admin.of').' '. $pagination->total_items
-							. ' '.Kohana::lang('ui_admin.searching_for').' <strong>'. $keyword_raw . "</strong>"
+							. "Showing " . count($query)
+							. ' results for the search <strong>'. $keyword_raw . "</strong>"
 							. "</div>";
 			}
 			else
@@ -160,76 +139,47 @@ class Search_Controller extends Main_Controller {
 				$pagination = "";
 			}
 
+			$results = array();
+
 			foreach ($query as $search)
 			{
-				$incident_id = $search->id;
-				$incident_title = strip_tags($search->incident_title);
-				$highlight_title = "";
-				$incident_title_arr = explode(' ', $incident_title);
-
-				foreach($incident_title_arr as $value)
-				{
-					if (in_array(strtolower($value),$keywords) AND !in_array(strtolower($value),$stop_words))
-					{
-						$highlight_title .= "<span class=\"search_highlight\">" . $value . "</span> ";
-					}
-					else
-					{
-						$highlight_title .= $value . " ";
-					}
+				$main[$search->place_id] = array();
+				$main[$search->place_id]['thoughtspot'] = $search;
+				$main[$search->place_id]['google'] = $fromGoogle[$search->place_id][0];
+				if(isset($main[$search->place_id]['google']['photos'])){
+					$main[$search->place_id]['photo'] = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" . $main[$search->place_id]['google']['photos'][0]['photo_reference'] . "&key=AIzaSyDVRjEjiHlXyoNp8Il2vXB64aRL2mlzzjk";
 				}
 
-				// Remove any markup, otherwise trimming below will mess things up
-				$incident_description = strip_tags($search->incident_description);
+				array_push($results, $search);
 
-				// Trim to 180 characters without cutting words
-				if ((strlen($incident_description) > 180) AND (strlen($incident_description) > 1))
-				{
-					$whitespaceposition = strpos($incident_description," ",175)-1;
-					$incident_description = substr($incident_description, 0, $whitespaceposition);
-				}
 
-				$highlight_description = "";
-				$incident_description_arr = explode(' ', $incident_description);
-
-				foreach($incident_description_arr as $value)
-				{
-					if (in_array(strtolower($value),$keywords) && !in_array(strtolower($value),$stop_words))
-					{
-						$highlight_description .= "<span class=\"search_highlight\">" . $value . "</span> ";
-					}
-					else
-					{
-						$highlight_description .= $value . " ";
-					}
-				}
-
-				$incident_date = date('D M j Y g:i:s a', strtotime($search->incident_date));
-
-				$html .= "<div class=\"search_result\">";
-				$html .= "<h3><a href=\"" . url::base() . "reports/view/" . $incident_id . "\">" . $highlight_title . "</a></h3>";
-				$html .= $highlight_description . " ...";
-				$html .= "<div class=\"search_date\">" . $incident_date . " | ".Kohana::lang('ui_admin.relevance').": <strong>+" . $search->relevance . "</strong></div>";
-				$html .= "</div>";
 			}
 		}
-		else
-		{
-			// Results Bar
-			$search_info .= "<div class=\"search_info\">0 ".Kohana::lang('ui_admin.results')."</div>";
 
-			$html .= "<div class=\"search_result\">";
-			$html .= "<h3>".Kohana::lang('ui_admin.your_search_for')."<strong>".$keyword_raw."</strong> ".Kohana::lang('ui_admin.match_no_documents')."</h3>";
-			$html .= "</div>";
-		}
 
-		$html .= $pagination;
 
-		$this->template->content->search_info = $search_info;
-		$this->template->content->search_results = $html;
+		uasort($main, "cmp");
+
+		//echo json_encode($results);
+		echo json_encode($main);
+
+		//$html .= $pagination;
+
+		$this->template->content->search_info = '';
+		$this->template->content->search_results = '';
 
 		// Rebuild Header Block
-		$this->template->header->header_block = $this->themes->header_block();
-		$this->template->footer->footer_block = $this->themes->footer_block();
+		//$this->template->header->header_block = $this->themes->header_block();
+		//$this->template->footer->footer_block = $this->themes->footer_block();
     }
 }
+
+
+
+		function cmp($a, $b)
+		{
+		    if ($a['google']['name'] == $b['google']['name']) {
+		        return 0;
+		    }
+		    return ($a['google']['name'] < $b['google']['name']) ? -1 : 1;
+		}

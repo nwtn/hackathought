@@ -47,6 +47,7 @@
 
 			$('#results .p-name').click(function() {
 				$(this).parent().toggleClass('selected');
+				$(w.thoughtspot.b).addClass('item-selected');
 			});
 		},
 

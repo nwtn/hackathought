@@ -57,6 +57,32 @@
 				</ol>
 			</section>
 
+			<section id="selection" class="h-card">
+				<h2 class="p-name">St. Michael’s Hospital STEPS for Youth</h2>
+				<img class="u-photo" src="http://www.dsai.ca/uploads/projects-main/T3_LiKaShing_1.jpg" alt="Photo of the SPOT" />
+				<p class="p-adr">21 McGill Street, Covenant House, Toronto</p>
+				<div class="notes">
+					<p class="rating">★★★★☆</p>
+					<div class="hours">
+						Hours of operation:<br />
+						Mon–Fri 9 am–5 pm<br />
+						<strong>open now</strong>
+					</div>
+					<div><a class="u-url" rel="external" href="http://www.stmichaelshospital.com/programs/mentalhealth/">http://www.stmichaelshospital.com/programs/mentalhealth/</a></div>
+					<div>
+						<span class="p-tel">1-416-864-5120</span><br />
+						<a class="u-email" href="mailto:steps@smh.ca">steps@smh.ca</a>
+					</div>
+					<p>Services provided:</p>
+					<ul>
+						<li>Assessment</li>
+						<li>treatment</li>
+						<li>support with school, work, social activities</li>
+						<li>family education and support</li>
+					</ul>
+				</div>
+			</section>
+
 			<section id="content">
 				<h2>Map</h2>
 				<?php echo $div_map; ?>
