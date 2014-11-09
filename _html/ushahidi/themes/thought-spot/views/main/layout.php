@@ -1,11 +1,14 @@
 		<main role="main" id="main">
 			<div class="description">
-				<p>Thought Spot is a live map designed by students, for students in the Greater Toronto Area.</p>
-				<p>The map allows students to easily identify and access health and wellness services, and discover resources that are relevant to their experiences, situation, and location.</p>
+				<div id="description-default">
+					<p>Thought Spot is a live map designed by students, for students in the Greater Toronto Area.</p>
+					<p>The map allows students to easily identify and access health and wellness services, and discover resources that are relevant to their experiences, situation, and location.</p>
+				</div>
+				<div id="description-live"></div>
 			</div>
 
 			<!-- move this later -->
-			<section>
+			<section id="categories">
 				<h2>Categories</h2>
 				<div id="report-category-filter">
 					<ul id="category_switch" class="category-filters">
