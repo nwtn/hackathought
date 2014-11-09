@@ -238,7 +238,13 @@ header label + p.description {
 	text-align: center;
 	top: 3.25rem;
 	width: 66%;
+	z-index: 1;
 }
+
+.section-selected.item-selected header #search-term-fs {
+	width: 100%;
+}
+
 
 .section-selected.services header #search-term-fs {
 	background-color: #68d9b4;
@@ -345,7 +351,8 @@ main #sections {
 }
 
 #categories,
-#results {
+#results,
+#selection {
 	background-color: #fff;
 	display: none;
 	font-size: 1rem;
@@ -359,16 +366,22 @@ main #sections {
 }
 
 .section-selected.services #categories,
-.section-selected.services #results {
+.section-selected.services #results,
+.item-selected.services #selection {
 	display: block;
 }
 
 #categories h2,
-#results h2 {
+#results h2,
+#selection h2 {
 	border-bottom: 1px solid #68d9b4;
 	font-size: 1.25rem;
 	margin: 0 0 0.5em 0;
 	padding: 0 0 0.5em 0;
+}
+
+#selection h2 {
+	border: none;
 }
 
 #categories ul,
@@ -437,9 +450,10 @@ main #content {
 
 #results {
 	left: 33%;
-	overflow-y: scroll;
+	overflow-y: auto;
 	padding-left: 1rem;
 	padding-right: 4rem;
+	transition: padding 0.3s;
 }
 
 #results-filtering {
@@ -488,6 +502,36 @@ main #content {
 	font-size: 0.9rem;
 	font-weight: normal;
 	margin: 0.5em 0;
+}
+
+#selection {
+	font-weight: normal;
+	left: 66%;
+	overflow-y: scroll;
+	padding-left: 1rem;
+	padding-right: 4rem;
+	width: 34%;
+}
+
+.item-selected #results {
+	padding-right: 1em;
+}
+
+#selection img {
+	max-width: 100%;
+}
+
+#selection .notes > div {
+	margin: 1em 0;
+}
+
+#selection .hours strong {
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+#selection .u-url {
+	word-wrap: break-word;
 }
 
 
