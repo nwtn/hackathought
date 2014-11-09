@@ -9,7 +9,7 @@
 
 			<!-- move this later -->
 			<section id="categories">
-				<h2>Browse by Category</h2>
+				<h2>Filter by Category</h2>
 				<div id="report-category-filter">
 					<ul id="category_switch" class="category-filters">
 						<?php
@@ -19,38 +19,10 @@
 
 								echo '
 									<li>
-								    	<a href="#" id="cat_'. $category .'" title="'.$category_description.'">
-											<div class="category-title">'.$category_title.'</div>
+								    	<a href="#" id="cat_'. $category .'" data-hover="cat_' . $category . '">
+											' . $category_title . '
 										</a>
-								';
-
-								// Get Children
-								echo '
-										<div class="hide" id="child_'. $category .'">
-								';
-								if (sizeof($category_info[3]) != 0) {
-									echo '
-										<ul>
-									';
-									foreach ($category_info[3] as $child => $child_info) {
-										$child_title = htmlentities($child_info[0], ENT_QUOTES, "UTF-8");
-										$child_description = htmlentities(Category_Lang_Model::category_description($child), ENT_QUOTES, "UTF-8");
-
-										echo '
-											<li>
-												<a href="#" id="cat_'. $child .'" title="'.$child_description.'">
-													<div class="category-title">'.$child_title.'</div>
-												</a>
-											</li>
-										';
-									}
-									echo '
-										</ul>
-									';
-								}
-								echo '
-									</div>
-								</li>
+									</li>
 								';
 							}
 						?>
@@ -62,6 +34,27 @@
 						Event::run('ushahidi_action.main_sidebar_post_filters');
 					?>
 				</div>
+			</section>
+
+			<section id="results">
+				<h2>Results</h2>
+
+				<section id="results-filtering">
+					<h3>Additional Filtering</h3>
+					<ul>
+						<li>Relevance</li>
+						<li>Location</li>
+						<li>Ratings</li>
+						<li>Timing</li>
+					</ul>
+				</section>
+
+				<ol>
+					<li class="h-card">
+						<div class="p-name">St. Michael’s Hospital STEPS for Youth</div>
+						<div class="p-note">Support for youth 16–23 experiencing a first episode of psychosis</div>
+					</li>
+				</ol>
 			</section>
 
 			<section id="content">

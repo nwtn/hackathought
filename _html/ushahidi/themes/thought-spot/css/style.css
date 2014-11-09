@@ -233,11 +233,11 @@ header label + p.description {
 	font-size: 2rem;
 	left: 0;
 	margin: -1px 0 0 0;
-	padding: 1em 3em;
+	padding: 1em 2em;
 	position: absolute;
 	text-align: center;
 	top: 3.25rem;
-	width: 40%;
+	width: 66%;
 }
 
 .section-selected.services header #search-term-fs {
@@ -344,33 +344,42 @@ main #sections {
 	display: none;
 }
 
-.section-selected.services #categories {
+#categories,
+#results {
 	background-color: #fff;
-	display: block;
-	font-size: 1.25rem;
+	display: none;
+	font-size: 1rem;
 	font-weight: bold;
 	left: 0;
-	padding: 2rem 6rem;
+	padding: 2rem 1rem 4rem 2rem;
 	position: absolute;
 	top: 10rem;
-	width: 40%;
+	width: 33%;
 	height: calc(100% - 10rem);
 }
 
-.section-selected.services #categories h2 {
+.section-selected.services #categories,
+.section-selected.services #results {
+	display: block;
+}
+
+#categories h2,
+#results h2 {
 	border-bottom: 1px solid #68d9b4;
 	font-size: 1.25rem;
 	margin: 0 0 0.5em 0;
 	padding: 0 0 0.5em 0;
 }
 
-.section-selected.services #categories ul {
+#categories ul,
+#results ul {
 	list-style-type: none;
 	margin: 1em 0;
 	padding: 0;
 }
 
-.section-selected.services #categories ul a {
+#categories ul a,
+#results ul a {
 	background-image: url('/themes/thought-spot/images/logo.svg');
 	background-repeat: no-repeat;
 	background-size: 0.75em auto;
@@ -380,37 +389,108 @@ main #sections {
 	padding: 0.5em 0 0.25em 2em;
 }
 
-.section-selected.services #categories ul a#cat_52 {
+.category-selected #categories ul a {
+	color: #666;
+}
+
+.category-selected.cat_52 #categories ul a#cat_52,
+.category-selected.cat_51 #categories ul a#cat_51,
+.category-selected.cat_50 #categories ul a#cat_50,
+.category-selected.cat_49 #categories ul a#cat_49,
+.category-selected.cat_48 #categories ul a#cat_48,
+.category-selected.cat_53 #categories ul a#cat_53,
+.category-selected.cat_54 #categories ul a#cat_54 {
+	color: #000;
+}
+
+#categories ul a#cat_52 {
 	background-image: url('/themes/thought-spot/images/logo-209449.svg');
 }
 
-.section-selected.services #categories ul a#cat_51 {
+#categories ul a#cat_51 {
 	background-image: url('/themes/thought-spot/images/logo-513f95.svg');
 }
 
-.section-selected.services #categories ul a#cat_50 {
+#categories ul a#cat_50 {
 	background-image: url('/themes/thought-spot/images/logo-df4e2f.svg');
 }
 
-.section-selected.services #categories ul a#cat_49 {
+#categories ul a#cat_49 {
 	background-image: url('/themes/thought-spot/images/logo-ac256c.svg');
 }
 
-.section-selected.services #categories ul a#cat_48 {
+#categories ul a#cat_48 {
 	background-image: url('/themes/thought-spot/images/logo-f8a132.svg');
 }
 
-.section-selected.services #categories ul a#cat_53 {
+#categories ul a#cat_53 {
 	background-image: url('/themes/thought-spot/images/logo-2996bf.svg');
 }
 
-.section-selected.services #categories ul a#cat_54 {
+#categories ul a#cat_54 {
 	background-image: url('/themes/thought-spot/images/logo-b52a42.svg');
 }
 
 main #content {
 	display: none;
 }
+
+#results {
+	left: 33%;
+	overflow-y: scroll;
+	padding-left: 1rem;
+	padding-right: 4rem;
+}
+
+#results-filtering {
+	max-height: 2em;
+	overflow: hidden;
+	transition: max-height 0.5s;
+}
+
+#results-filtering.show {
+	max-height: 10em;
+}
+
+#results-filtering h3 {
+	border-bottom: 1px solid #68d9b4;
+	cursor: pointer;
+	margin: -0.25em 0 0 0;
+	padding-bottom: 0.25em;
+}
+
+#results-filtering h3::after {
+	content: '+';
+	float: right;
+}
+
+#results-filtering ul {
+	background: #eee;
+	padding: 0.5em;
+}
+
+#results ol {
+	list-style-type: none;
+	margin: 1em 0;
+	padding: 0;
+}
+
+#results li.selected div {
+	color: #513f95;
+}
+
+#results .p-name {
+	cursor: pointer;
+}
+
+#results .p-note {
+	color: #666;
+	font-size: 0.9rem;
+	font-weight: normal;
+	margin: 0.5em 0;
+}
+
+
 
 footer {
 	background-color: #fff;

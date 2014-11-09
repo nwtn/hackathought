@@ -34,6 +34,20 @@
 				$(w.thoughtspot.b).addClass($(this).data('hover') + ' section-selected');
 				$('header img').attr('src', '/themes/thought-spot/images/logo-white.svg');
 			});
+
+			$('#categories ul a').click(function() {
+				$(w.thoughtspot.b).removeClass('cat_52 cat_51 cat_50 cat_49 cat_48 cat_53 cat_54');
+				$(w.thoughtspot.b).addClass($(this).data('hover') + ' category-selected');
+				return false;
+			});
+
+			$('#results-filtering h3').click(function() {
+				$('#results-filtering').toggleClass('show');
+			});
+
+			$('#results .p-name').click(function() {
+				$(this).parent().toggleClass('selected');
+			});
 		},
 
 		'initializePlaces': function() {
