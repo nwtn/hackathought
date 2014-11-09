@@ -6,11 +6,12 @@
 
 		/* initialize */
 		'init': function() {
-      console.log('loading');
-      google.maps.event.addDomListener(w, 'load', function() { alert('a'); w.thoughtspot.initializePlaces} );
+      //console.log('loading');
+      //google.maps.event.addDomListener(w, 'load', function() { alert('a'); w.thoughtspot.initializePlaces} );
 		},
 
     'initializePlaces': function() {
+      /*
       alert('aa');
       var mapOptions = {
         center: new google.maps.LatLng(-33.8688, 151.2195),
@@ -53,15 +54,6 @@
             map.setCenter(place.geometry.location);
             map.setZoom(17);  // Why 17? Because it looks good.
           }
-          /*
-          marker.setIcon(({
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(35, 35)
-          }));
-          */
           marker.setPosition(place.geometry.location);
           marker.setVisible(true);
 
@@ -103,13 +95,16 @@
           infowindow.open(map, marker);
         });
       }
+      */
     },
 
     'setupClickListener': function(id, types) {
+      /*
       var radioButton = document.getElementById(id);
       google.maps.event.addDomListener(radioButton, 'click', function() {
         autocomplete.setTypes(types);
       });
+*/
     }
 
     //setupClickListener('changetype-all', []);
@@ -118,7 +113,6 @@
     //setupClickListener('changetype-geocode', ['geocode']);
 	};
 
-  console.log('a');
-	w.thoughtspot.init();
+  w.thoughtspot.init();
 
 })(this, this.document);
