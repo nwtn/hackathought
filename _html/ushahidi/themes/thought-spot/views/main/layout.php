@@ -88,13 +88,4 @@
 				<?php echo $div_map; ?>
 				<div id="map-canvas"></div>
 			</section>
-
-			<!--
-			<section id="garbage">
-				<h2>Garbage</h2>
-				<ul class="content-column">
-					<?php blocks::render(); ?>
-				</ul>
-			</section>
-			-->
 		</main>
