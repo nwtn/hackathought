@@ -69,6 +69,7 @@
 			<section id="content">
 				<h2>Map</h2>
 				<?php echo $div_map; ?>
+				<div id="map-canvas"></div>
 			</section>
 
 			<section id="garbage">
