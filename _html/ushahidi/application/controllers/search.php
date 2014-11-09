@@ -156,20 +156,12 @@ class Search_Controller extends Main_Controller {
 			}
 		}
 
-		function cmp($a, $b)
-		{
-		    if ($a['google']['name'] == $b['google']['name']) {
-		        return 0;
-		    }
-		    return ($a['google']['name'] < $b['google']['name']) ? -1 : 1;
-		}
-
 
 
 		uasort($main, "cmp");
 
 		//echo json_encode($results);
-		//echo json_encode($main);
+		echo json_encode($main);
 
 		//$html .= $pagination;
 
@@ -181,3 +173,13 @@ class Search_Controller extends Main_Controller {
 		//$this->template->footer->footer_block = $this->themes->footer_block();
     }
 }
+
+
+
+		function cmp($a, $b)
+		{
+		    if ($a['google']['name'] == $b['google']['name']) {
+		        return 0;
+		    }
+		    return ($a['google']['name'] < $b['google']['name']) ? -1 : 1;
+		}
