@@ -9,9 +9,7 @@
 
 		<!-- hardcode the css link -->
 		<link rel="stylesheet" type="text/css" href="<?php print $path; ?>/css/style.css" />
-
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgr8nzb8ORG5HEc7Bnrki_ac9Yy-8lDsA&amp;libraries=places">
-    </script>
+		<link href='http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 		<?php
 			// echo $header_block;
@@ -41,48 +39,48 @@
 
 	<body id="page" class="<?php echo $body_class; ?>">
 		<header role="banner" id="header">
-			<a href="<?php echo url::site();?>">
-				<h1>
+			<h1>
+				<a href="<?php echo url::site();?>">
 					<img src="<?php print $path; ?>/images/logo.svg" alt="Logo" />
-					<?php echo $site_name; ?>
-				</h1>
-			</a>
+					<?php echo $site_name; ?> Toronto
+				</a>
+			</h1>
 
 			<nav role="navigation" id="nav">
-				<section role="search">
+				<section role="search" id="searchbox">
 					<h2>What are you looking for?</h2>
 					<form action="/search" method="POST" id="search">
-						<fieldset>
-							<legend>Categories</legend>
+						<fieldset id="search-sections-fs">
+							<legend>Sections</legend>
 							<ul>
 								<li>
-									<label for="search-category-services">
-										<input type="radio" name="search-category" id="search-category-services" value="services" />
-										Services
-									</label>
+									<label for="search-section-services" data-hover="services">
+										<input type="radio" name="search-section" id="search-section-services" value="services" />
+										Services</label>
+									<p class="description">Search our database based on location, activity, etc. different descriptive words of how you can use this map to get things you need or want.</p>
 								</li>
 								<li>
-									<label for="search-category-problemsolving">
-										<input type="radio" name="search-category" id="search-category-problemsolving" value="problemsolving" />
-										Problem Solving
-									</label>
+									<label for="search-section-problemsolving" data-hover="problemsolving">
+										<input type="radio" name="search-section" id="search-section-problemsolving" value="problemsolving" />
+										Problem solving</label>
+									<p class="description">Find what you need or an answer to your questions through a step-by-step breakdown of our resources</p>
 								</li>
 								<li>
-									<label for="search-category-outings">
-										<input type="radio" name="search-category" id="search-category-outings" value="outings" />
-										Outings
-									</label>
+									<label for="search-section-outings" data-hover="outings">
+										<input type="radio" name="search-section" id="search-section-outings" value="outings" />
+										Outings</label>
+									<p class="description">Looking to take a break? Explore restaurants, parks, cafés and more. Find or submit a walking tour or afternoon itinerary submitted by fellow students.</p>
 								</li>
 								<li>
-									<label for="search-category-teachings">
-										<input type="radio" name="search-category" id="search-category-teachings" value="teachings" />
-										Teachings
-									</label>
+									<label for="search-section-teachings" data-hover="teachings">
+										<input type="radio" name="search-section" id="search-section-teachings" value="teachings" />
+										Teachings</label>
+									<p class="description">Definitions and additional resources related to your overall well-being.</p>
 								</li>
 							</ul>
 						</fieldset>
 
-						<fieldset>
+						<fieldset id="search-crisis-fs">
 							<legend>Are you in crisis or in need of immediate assistance?</legend>
 							<ol>
 								<li>
@@ -110,12 +108,14 @@
 							</ol>
 						</fieldset>
 
-						<label for="search-age">
-							Age
-							<input type="number" name="search-age" id="search-age" />
-						</label>
+						<fieldset id="search-age-fs">
+							<label for="search-age">
+								Age
+								<input type="number" name="search-age" id="search-age" />
+							</label>
+						</fieldset>
 
-						<fieldset>
+						<fieldset id="search-gender-fs">
 							<legend>Gender</legend>
 							<ul>
 								<li>
@@ -146,7 +146,7 @@
 							</ul>
 						</fieldset>
 
-						<fieldset>
+						<fieldset id="search-accessibility-fs">
 							<legend>Accessibility needs</legend>
 							<p>Please select all that apply.</p>
 							<ul>
@@ -183,7 +183,7 @@
 							</ul>
 						</fieldset>
 
-						<fieldset>
+						<fieldset id="search-concerns-fs">
 							<legend>Concerns</legend>
 							<p>Please select all that apply.</p>
 							<ul>
@@ -426,14 +426,14 @@
 								</li>
 							</ul>
 						</fieldset>
-
-						<label for="search-term">
-							Search Term
-							<input type="text" name="k" id="search-term" />
-						</label>
-
-						<input type="submit" name="b" id="search-submit" value="Search" />
+						<fieldset id="search-term-fs">
+							<label for="search-term">Search Term</label>
+							<input type="search" name="k" id="search-term" placeholder="search" />
+							<input type="submit" name="b" id="search-submit" value="Search" />
+						</fieldset>
 					</form>
 				</section>
 			</nav>
+
+			<a class="suggest-a-spot" href="/suggest">Suggest a spot</a>
 		</header>
