@@ -14,7 +14,7 @@
  */
 
 class Reports_Controller extends Main_Controller {
-	
+
 	/**
 	 * Whether an admin console user is logged in
 	 * @var bool
@@ -58,7 +58,7 @@ class Reports_Controller extends Main_Controller {
 
 		// Get Default Color
 		$this->themes->js->default_map_all = $this->template->content->default_map_all = Kohana::config('settings.default_map_all');
-		
+
 		// Get default icon
 		$this->themes->js->default_map_all_icon = $this->template->content->default_map_all_icon = '';
 		if (Kohana::config('settings.default_map_all_icon_id'))
@@ -100,7 +100,7 @@ class Reports_Controller extends Main_Controller {
 
 		// Collect report stats
 		$this->template->content->report_stats = new View('reports/stats');
-		
+
 		// Total Reports
 		$total_reports = Incident_Model::get_total_reports(TRUE);
 
@@ -145,6 +145,8 @@ class Reports_Controller extends Main_Controller {
 		$this->template->content->report_stats->avg_reports_per_day = $avg_reports_per_day;
 		$this->template->content->report_stats->percent_verified = $percent_verified;
 		$this->template->content->services = Service_Model::get_array();
+
+		echo var_dump(Service_Model::get_array());
 
 		$this->template->header->header_block = $this->themes->header_block();
 		$this->template->footer->footer_block = $this->themes->footer_block();
@@ -208,7 +210,7 @@ class Reports_Controller extends Main_Controller {
 											. Kohana::lang('ui_main.reports');
 			}
 			else
-			{ 
+			{
 				// If we don't want to show pagination
 				$report_listing->stats_breadcrumb = $pagination->total_items.' '.Kohana::lang('ui_admin.reports');
 			}
@@ -226,7 +228,7 @@ class Reports_Controller extends Main_Controller {
 	{
 		$this->template = "";
 		$this->auto_render = FALSE;
-		
+
 		$report_listing_view = $this->_get_report_listing_view();
 		print $report_listing_view;
 	}
@@ -314,7 +316,7 @@ class Reports_Controller extends Main_Controller {
 		{
 			// Instantiate Validation, use $post, so we don't overwrite $_POST fields with our own things
 			$post = array_merge($_POST, $_FILES);
-			
+
 			// Adding event for endtime plugin to hook into
 			Event::run('ushahidi_action.report_posted_frontend', $post);
 
@@ -373,7 +375,7 @@ class Reports_Controller extends Main_Controller {
 		$this->template->content->form = $form;
 		$this->template->content->errors = $errors;
 		$this->template->content->form_error = $form_error;
-		
+
 		 // Populate this for backwards compat
 		$this->template->content->categories = array();
 
@@ -441,9 +443,9 @@ class Reports_Controller extends Main_Controller {
 				->where('id',$id)
 				->where('incident_active',1)
 				->find();
-				
+
 			// Not Found
-			if ( ! $incident->loaded) 
+			if ( ! $incident->loaded)
 			{
 				url::redirect('reports/view/');
 			}
@@ -629,7 +631,7 @@ class Reports_Controller extends Main_Controller {
 					->join('incident','incident.id','rating.incident_id','INNER')
 					->where('rating.incident_id',$incident->id)
 					->find();
-					
+
 			$this->template->content->incident_rating = ($rating->rating == '')
 				? 0
 				: $rating->rating;
@@ -878,7 +880,7 @@ class Reports_Controller extends Main_Controller {
 			if ($geocode_result)
 			{
 				echo json_encode(array_merge(
-					$geocode_result, 
+					$geocode_result,
 					array('status' => 'success')
 				));
 			}
@@ -951,7 +953,7 @@ class Reports_Controller extends Main_Controller {
 			{
 				$total_rating += $rating->rating;
 			}
-			
+
 			return $total_rating;
 		}
 		else
@@ -1003,7 +1005,7 @@ class Reports_Controller extends Main_Controller {
 		$this->auto_render = FALSE;
 		isset($_POST['form_id']) ? $form_id = $_POST['form_id'] : $form_id = "1";
 		isset($_POST['incident_id']) ? $incident_id = $_POST['incident_id'] : $incident_id = "";
-		
+
 		$form_fields = customforms::switcheroo($incident_id,$form_id);
 		echo json_encode(array("status"=>"success", "response"=>$form_fields));
 	}

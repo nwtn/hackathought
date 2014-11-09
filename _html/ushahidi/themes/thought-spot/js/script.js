@@ -7,10 +7,11 @@
 		/* initialize */
 		'init': function() {
       console.log('loading');
-      google.maps.event.addDomListener(window, 'load', initialize);
+      google.maps.event.addDomListener(w, 'load', function() { alert('a'); w.thoughtspot.initializePlaces} );
 		},
 
     'initializePlaces': function() {
+      alert('aa');
       var mapOptions = {
         center: new google.maps.LatLng(-33.8688, 151.2195),
         zoom: 13
