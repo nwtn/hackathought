@@ -53,6 +53,7 @@ a:hover {
 
 * {
 	box-sizing: border-box;
+	z-index: 2;
 }
 
 html {
@@ -67,6 +68,9 @@ body {
 	line-height: 1.2;
 	margin: 0;
 	width: 100%;
+	background-image: url('/themes/thought-spot/images/map.jpg');
+	background-repeat: no-repeat;
+	background-size: cover cover;
 }
 
 header {
@@ -238,7 +242,7 @@ header label + p.description {
 	text-align: center;
 	top: 3.25rem;
 	width: 66%;
-	z-index: 1;
+	z-index: 3;
 }
 
 .section-selected.item-selected header #search-term-fs {
@@ -386,6 +390,12 @@ main #sections {
 
 #selection h2 {
 	border: none;
+	cursor: pointer;
+	padding-left: 3em;
+	background-image: url('/themes/thought-spot/images/logo-513f95.svg');
+	background-position: 0 center;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 #categories ul,
@@ -537,8 +547,6 @@ main #content {
 #selection .u-url {
 	word-wrap: break-word;
 }
-
-
 
 footer {
 	background-color: #fff;
