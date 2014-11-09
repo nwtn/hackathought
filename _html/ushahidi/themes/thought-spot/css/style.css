@@ -1,3 +1,45 @@
+button,
+input,
+optgroup,
+select,
+textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+input {
+	line-height: normal;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+
+
 * {
 	box-sizing: border-box;
 }
@@ -104,12 +146,126 @@ header input[type='radio'] {
 	display: none;
 }
 
-header label:hover {
+header label:hover,
+.services header label[data-hover="services"],
+.problemsolving header label[data-hover="problemsolving"],
+.outings header label[data-hover="outings"],
+.teachings header label[data-hover="teachings"] {
 	text-decoration: underline;
 }
 
 header label + p.description {
 	display: none;
+}
+
+.category-selected header {
+	background-color: #4d4c4d;
+	color: #fff;
+	float: none;
+	font-size: 1.25rem;
+	height: auto;
+	left: 0;
+	padding: 0.5em 3em;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.category-selected header h1 {
+	float: left;
+	font-size: 1.25rem;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	width: auto;
+}
+
+.category-selected header h1 img {
+	display: inline;
+	margin: 0;
+	padding: 0 0.5em 0 0;
+	vertical-align: middle;
+	width: 1.5em;
+}
+
+.category-selected header nav {
+	float: right;
+}
+
+.category-selected header fieldset > ul {
+	font-size: 1.25rem;
+	list-style-type: none;
+	margin: 0.1em 0 0 0;
+	padding: 0;
+	text-align: left;
+}
+
+.category-selected header li {
+	display: inline;
+}
+
+.category-selected header li::after {
+	content: ' | ';
+}
+
+.category-selected header li:last-child::after {
+	content: '';
+}
+
+.category-selected header label {
+	display: inline;
+	padding: 0 0.5em;
+}
+
+.category-selected header #search-term-fs {
+	background: #fff;
+	display: block;
+	font-size: 2rem;
+	left: 0;
+	margin: -1px 0 0 0;
+	padding: 1em 3em;
+	position: absolute;
+	text-align: center;
+	top: 3.25rem;
+	width: 40%;
+}
+
+.category-selected.services header #search-term-fs {
+	background-color: #68d9b4;
+}
+
+.category-selected.problemsolving header #search-term-fs {
+	background-color: #bb9cc7;
+}
+
+.category-selected.outings header #search-term-fs {
+	background-color: #6dbcde;
+}
+
+.category-selected.teachings header #search-term-fs {
+	background-color: #7b81ab;
+}
+
+.category-selected header #search-term-fs label {
+	display: none;
+}
+
+.category-selected header #search-term-fs input {
+	border: none;
+	color: #b3b2b3;
+	font-size: 2rem;
+	font-weight: bold;
+	padding: 0.5em;
+	width: -webkit-calc(100% - 3.25em);
+}
+
+.category-selected header #search-term-fs input[type=submit] {
+	background-color: #000;
+	border: 1px solid #000;
+	color: transparent;
+	margin: 0 0 0 -0.5em;
+	overflow: hidden;
+	width: 2.25em;
 }
 
 
@@ -138,6 +294,10 @@ main div.description {
 	height: 100%;
 }
 
+.category-selected main div.description {
+	display: none;
+}
+
 #description-default {
 	display: block;
 }
@@ -156,6 +316,44 @@ main div.description {
 
 main #categories {
 	display: none;
+}
+
+.category-selected.services #categories {
+	background-color: #fff;
+	display: block;
+	font-size: 1.25rem;
+	font-weight: bold;
+	left: 0;
+	margin: -1px 0 0 0;
+	padding: 2rem 6rem;
+	position: absolute;
+	top: 11.75rem;
+	width: 40%;
+	height: calc(100% - 11.75rem);
+}
+
+.category-selected.services #categories h2 {
+	border-bottom: 1px solid #68d9b4;
+	font-size: 1.25rem;
+	margin: 0 0 0.5em 0;
+	padding: 0 0 0.5em 0;
+}
+
+.category-selected.services #categories ul {
+	list-style-type: none;
+	margin: 1em 0;
+	padding: 0;
+}
+
+.category-selected.services #categories ul a {
+	background-image: url('/themes/thought-spot/images/logo.svg');
+	background-repeat: no-repeat;
+	background-size: 0.75em auto;
+	background-position: 0 center;
+	color: inherit;
+	display: block;
+	padding: 0.25em 0 0.25em 2em;
+	text-decoration: none;
 }
 
 main #content {

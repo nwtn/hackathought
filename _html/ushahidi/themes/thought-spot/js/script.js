@@ -17,11 +17,20 @@
 				},
 
 				function() {
-					$(w.thoughtspot.b).removeClass($(this).data('hover') + ' category');
+					if ($(w.thoughtspot.b).hasClass('category-selected')) {
+						$(w.thoughtspot.b).removeClass('category');
+					} else {
+						$(w.thoughtspot.b).removeClass($(this).data('hover') + ' category');
+					}
 					$('header img').attr('src', '/themes/thought-spot/images/logo.svg');
 					$('#description-live').html('');
 				}
 			);
+
+			$('#search-categories-fs label').click(function() {
+				$(w.thoughtspot.b).removeClass('category');
+				$(w.thoughtspot.b).addClass($(this).data('hover') + ' category-selected');
+			});
 		},
 
 		'initializePlaces': function() {

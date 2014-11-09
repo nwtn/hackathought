@@ -9,14 +9,9 @@
 
 			<!-- move this later -->
 			<section id="categories">
-				<h2>Categories</h2>
+				<h2>Browse by Category</h2>
 				<div id="report-category-filter">
 					<ul id="category_switch" class="category-filters">
-						<li>
-							<a class="active" id="cat_0" href="#">
-								<span class="category-title"><?php echo Kohana::lang('ui_main.all_categories');?></span>
-							</a>
-						</li>
 						<?php
 							foreach ($categories as $category => $category_info) {
 								$category_title = htmlentities($category_info[0], ENT_QUOTES, "UTF-8");

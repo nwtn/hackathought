@@ -55,29 +55,25 @@
 								<li>
 									<label for="search-category-services" data-hover="services">
 										<input type="radio" name="search-category" id="search-category-services" value="services" />
-										Services
-									</label>
+										Services</label>
 									<p class="description">Search our database based on location, activity, etc. different descriptive words of how you can use this map to get things you need or want.</p>
 								</li>
 								<li>
 									<label for="search-category-problemsolving" data-hover="problemsolving">
 										<input type="radio" name="search-category" id="search-category-problemsolving" value="problemsolving" />
-										Problem solving
-									</label>
+										Problem solving</label>
 									<p class="description">Find what you need or an answer to your questions through a step-by-step breakdown of our resources</p>
 								</li>
 								<li>
 									<label for="search-category-outings" data-hover="outings">
 										<input type="radio" name="search-category" id="search-category-outings" value="outings" />
-										Outings
-									</label>
+										Outings</label>
 									<p class="description">Looking to take a break? Explore restaurants, parks, cafés and more. Find or submit a walking tour or afternoon itinerary submitted by fellow students.</p>
 								</li>
 								<li>
 									<label for="search-category-teachings" data-hover="teachings">
 										<input type="radio" name="search-category" id="search-category-teachings" value="teachings" />
-										Teachings
-									</label>
+										Teachings</label>
 									<p class="description">Definitions and additional resources related to your overall well-being.</p>
 								</li>
 							</ul>
@@ -431,10 +427,8 @@
 						</fieldset>
 
 						<fieldset id="search-term-fs">
-							<label for="search-term">
-								Search Term
-								<input type="text" name="k" id="search-term" />
-							</label>
+							<label for="search-term">Search Term</label>
+							<input type="search" name="k" id="search-term" placeholder="search" />
 
 							<input type="submit" name="b" id="search-submit" value="Search" />
 						</fieldset>
