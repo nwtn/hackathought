@@ -11,9 +11,11 @@
 
 			$('#search-categories-fs label').hover(
 				function() {
-					$(w.thoughtspot.b).addClass($(this).data('hover') + ' category');
-					$('header img').attr('src', '/themes/thought-spot/images/logo-white.svg');
-					$('#description-live').html($(this).next().html());
+					if ($(w.thoughtspot.b).hasClass('category-selected') === false) {
+						$(w.thoughtspot.b).addClass($(this).data('hover') + ' category');
+						$('header img').attr('src', '/themes/thought-spot/images/logo-white.svg');
+						$('#description-live').html($(this).next().html());
+					}
 				},
 
 				function() {
@@ -21,15 +23,16 @@
 						$(w.thoughtspot.b).removeClass('category');
 					} else {
 						$(w.thoughtspot.b).removeClass($(this).data('hover') + ' category');
+						$('header img').attr('src', '/themes/thought-spot/images/logo.svg');
+						$('#description-live').html('');
 					}
-					$('header img').attr('src', '/themes/thought-spot/images/logo.svg');
-					$('#description-live').html('');
 				}
 			);
 
 			$('#search-categories-fs label').click(function() {
 				$(w.thoughtspot.b).removeClass('category');
 				$(w.thoughtspot.b).addClass($(this).data('hover') + ' category-selected');
+				$('header img').attr('src', '/themes/thought-spot/images/logo-white.svg');
 			});
 		},
 

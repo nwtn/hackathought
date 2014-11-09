@@ -9,6 +9,7 @@
 
 		<!-- hardcode the css link -->
 		<link rel="stylesheet" type="text/css" href="<?php print $path; ?>/css/style.css" />
+		<link href='http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 		<?php
 			// echo $header_block;
