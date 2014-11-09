@@ -64,7 +64,7 @@
 								<li>
 									<label for="search-category-problemsolving">
 										<input type="radio" name="search-category" id="search-category-problemsolving" value="problemsolving" />
-										Problem Solving
+										Problem solving
 									</label>
 								</li>
 								<li>
