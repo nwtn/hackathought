@@ -432,16 +432,8 @@
 							<input type="text" name="k" id="search-term" />
 						</label>
 
-<<<<<<< Updated upstream
 						<input type="submit" name="b" id="search-submit" value="Search" />
 					</form>
 				</section>
 			</nav>
 		</header>
-=======
-					<div id="searchbox">
-						<?php echo $search; ?>
-					</div>
-
-					<div id="map-canvas"></div>
->>>>>>> Stashed changes
