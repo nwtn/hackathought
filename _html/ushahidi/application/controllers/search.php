@@ -141,13 +141,18 @@ class Search_Controller extends Main_Controller {
 
 			$results = array();
 
+			$html = '';
+
 			foreach ($query as $search)
 			{
 				$main[$search->place_id] = array();
 				$main[$search->place_id]['thoughtspot'] = $search;
 				$main[$search->place_id]['google'] = $fromGoogle[$search->place_id][0];
+
+				$html .= '<h3>' . $main[$search->place_id]['google']['name'] . '</h3>';
 				if(isset($main[$search->place_id]['google']['photos'])){
 					$main[$search->place_id]['photo'] = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" . $main[$search->place_id]['google']['photos'][0]['photo_reference'] . "&key=AIzaSyDVRjEjiHlXyoNp8Il2vXB64aRL2mlzzjk";
+					$html .= '<img src="' . $main[$search->place_id]['photo'] . '"/>';
 				}
 
 				array_push($results, $search);
@@ -161,12 +166,21 @@ class Search_Controller extends Main_Controller {
 		uasort($main, "cmp");
 
 		//echo json_encode($results);
-		echo json_encode($main);
+		//echo json_encode($main);
 
 		//$html .= $pagination;
 
+		//$this->template->content->search_info = '';
+		//$this->template->content->search_results = '';
+
+		echo $html;
+
 		$this->template->content->search_info = '';
-		$this->template->content->search_results = '';
+		$this->template->content->search_results = $html;
+
+		// Rebuild Header Block
+		$this->template->header->header_block = $this->themes->header_block();
+		$this->template->footer->footer_block = $this->themes->footer_block();
 
 		// Rebuild Header Block
 		//$this->template->header->header_block = $this->themes->header_block();
