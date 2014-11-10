@@ -5,6 +5,13 @@ hackathought
 
 Team: [Rushmore Academy Beekeepers](http://hackathought.challengepost.com/submissions/29594-rushmore-academy-beekeepers)
 
+Members:
+
+* Jesmin Antony
+* Nikolas LeBlanc
+* David Newton
+* Emma Novotny
+
 ## Resources
 
 Design and content docs are in the `Resources` folder
