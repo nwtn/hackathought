@@ -1,0 +1,49 @@
+%!Adobe-FontList 1.16
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:ApercuPro-Bold
+FamilyName:Apercu Pro
+StyleName:Bold
+MenuName:Apercu Pro
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Apercu Pro Bold
+WritingScript:Roman
+OutlineFileName:\apercu_bold_pro.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:91180
+FileModTime:1330321104
+NameArray:0,Mac,4,Apercu Pro Bold
+NameArray:0,Win,1,Apercu Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:ApercuPro
+FamilyName:Apercu Pro
+StyleName:Regular
+MenuName:Apercu Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Apercu Pro
+WritingScript:Roman
+OutlineFileName:\apercu_regular_pro.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:95536
+FileModTime:1330320930
+NameArray:0,Mac,4,Apercu Pro
+NameArray:0,Win,1,Apercu Pro
+%EndFont
+
